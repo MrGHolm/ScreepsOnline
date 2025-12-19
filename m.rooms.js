@@ -4,6 +4,8 @@ let MRooms = {
             let mSources = myRoom.find(FIND_SOURCES);
             let mSourceArray = []
             for (let mS in mSources) {
+                console.log('pos1 : ' + mSources[mS]);
+                console.log('pos2 : ' + myRoom[mS].spawn);
                 let mSourceData = {
                     index: mS,
                     id: mSources[mS].id,
@@ -14,6 +16,7 @@ let MRooms = {
             myRoom.memory.mySources = mSourceArray;
             for (let memS in myRoom.memory.mySources) {
                 let lMemS = myRoom.memory.mySources[memS];
+                console.log('pos2')
                 if (myRoom.pos.lookForAt(LOOK_STRUCTURES, lMemS.pos).structureType !== STRUCTURE_CONTAINER ||
                     myRoom.pos.lookForAt(LOOK_CONSTRUCTION_SITES, lMemS.pos).structureType !== STRUCTURE_CONTAINER) {
                     myRoom.pos.createConstructionSite(lMemS.pos, STRUCTURE_CONTAINER)
