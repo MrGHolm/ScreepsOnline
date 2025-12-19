@@ -5,11 +5,11 @@ let MRooms = {
             let mSourceArray = []
             for (let mS in mSources) {
                 console.log('pos1 : ' + mSources[mS]);
-                console.log('pos2 : ' + myRoom[mS].spawn);
+                console.log(' : ' + myRoom[mS].find(FIND_MY_SPAWNS));
                 let mSourceData = {
                     index: mS,
                     id: mSources[mS].id,
-                    pos: mSources[mS].pos.findPathTo(myRoom.spawn.pos,)[0]
+                    pos: mSources[mS].pos.findPathTo(myRoom[mS].find(FIND_MY_SPAWNS)[0])
                 };
                 mSourceArray.push(mSourceData);
             }
@@ -22,6 +22,7 @@ let MRooms = {
                     myRoom.pos.createConstructionSite(lMemS.pos, STRUCTURE_CONTAINER)
                 }
             }
+            console.log('pos3')
             let mHarvesters = myRoom.find(FIND_MY_CREEPS, {filter: (mc) => mc.memory.role === 'harvester'})
             if (mHarvesters.length < mSourceArray.length) {
                 let que = Memory.spawnCreepsQue;
