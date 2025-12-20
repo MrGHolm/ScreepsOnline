@@ -23,21 +23,26 @@ let MRooms = {
                 //console.log('pos2')
                 if (myRoom.lookForAt(LOOK_STRUCTURES, lMemS.pos.x, lMemS.pos.y).structureType !== STRUCTURE_CONTAINER ||
                     myRoom.lookForAt(LOOK_CONSTRUCTION_SITES, lMemS.pos.x, lMemS.pos.y).structureType !== STRUCTURE_CONTAINER) {
-                    myRoom.createConstructionSite( lMemS.pos.x, lMemS.pos.y, STRUCTURE_CONTAINER);
+                    myRoom.createConstructionSite(lMemS.pos.x, lMemS.pos.y, STRUCTURE_CONTAINER);
                 }
             }
             //console.log('pos3')
             let mHarvesters = myRoom.find(FIND_MY_CREEPS, {filter: (mc) => mc.memory.role === 'harvester'})
+            let que = Memory.spawnCreepsQue;
+            let queCreep = {
+                creepRoom: '',
+                creepRole: '',
+                creepTarget: '',
+                creepTargetPos: '',
+                creepIndex: ''
+            }
             if (mHarvesters.length < mSourceArray.length) {
-                let que = Memory.spawnCreepsQue;
                 if (que === undefined) {
                     que = []
                 }
                 //console.log(que)
-                if (!que.includes('harvester')) {
-                    que.push('harvester');
-                    Memory.spawnCreepsQue = que;
-                }
+                queCreep.creepRoom = myRoom.name
+                queCreep.creepRole = 'harvester'
             }
         }
     }
